@@ -11,7 +11,7 @@ A focused portfolio code sample maintained by **Jap Dave**. Built with AI assist
 - Normalized contact emails, per-owner uniqueness and nonnegative deal amounts.
 - Pagination, contact search, deal-stage filters and deterministic ordering.
 - ORM query optimization and regression tests that catch N+1 queries.
-- Docker/Compose setup and a PostgreSQL-backed GitHub Actions test workflow.
+- Docker/Compose setup and a PostgreSQL-backed GitHub Actions workflow template.
 
 This is a backend example with a minimal landing page, allauth screens and DRF's browsable interface. It is not a complete CRM product or a React UI.
 
@@ -42,7 +42,7 @@ docker compose run --rm web python manage.py createsuperuser
 docker compose up --build -d web
 ```
 
-Compose is a local demonstration configuration. PostgreSQL data lives in a named volume. Migrations are an explicit step, not run simultaneously by each web worker. Use a PostgreSQL DATABASE_URL for non-Docker deployments too. The included workflow runs tests against PostgreSQL; local validation in the authoring environment used SQLite because PostgreSQL and Docker were unavailable.
+Compose is a local demonstration configuration. PostgreSQL data lives in a named volume. Migrations are an explicit step, not run simultaneously by each web worker. Use a PostgreSQL DATABASE_URL for non-Docker deployments too. `docs/ci-postgres.yml` is a workflow template: copy it to `.github/workflows/tests.yml` to activate PostgreSQL CI. The publishing connection could not write the workflow path, so CI is not active and no PostgreSQL run is claimed. Local validation used SQLite because PostgreSQL and Docker were unavailable.
 
 ## Google authentication setup
 
